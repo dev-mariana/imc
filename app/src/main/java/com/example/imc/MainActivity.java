@@ -36,15 +36,28 @@ public class MainActivity extends AppCompatActivity {
         Double imc, peso, altura;
 
         //pega o texto digitado no input e o transforma em string
-        peso = Double.parseDouble(etPeso.getText().toString());
-        altura = Double.parseDouble(etAltura.getText().toString());
+        //peso = Double.parseDouble(etPeso.getText().toString());
+        //altura = Double.parseDouble(etAltura.getText().toString());
 
-        imc = peso / (altura * altura);
+        try {
+            peso = Double.parseDouble(etPeso.getText().toString());
+            altura = Double.parseDouble(etAltura.getText().toString());
+
+            imc = peso / (altura * altura);
+
+            tvImc.setText(("IMC: " + imc.intValue()));
+            tvSituacao.setText(situacao(imc));
+        }
+        catch (NumberFormatException e) {
+            tvImc.setText("Por favor, digite seu peso e sua altura!");
+        }
+
+        //imc = peso / (altura * altura);
 
         //pega o resultado do imc e converte para inteiro
 
-        tvImc.setText(("IMC: " + imc));
-        tvSituacao.setText(situacao(imc));
+        //tvImc.setText(("IMC: " + imc.intValue()));
+       // tvSituacao.setText(situacao(imc));
 
         //limpa os dados do editText dps de enviados
         etAltura.setText("");
